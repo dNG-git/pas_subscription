@@ -74,7 +74,7 @@ Subscription ID
 User ID to work with
 		"""
 
-		if (_id != None): self.set_id(_id)
+		if (_id is not None): self.set_id(_id)
 	#
 
 	def is_subscribable(self):
@@ -101,7 +101,7 @@ to subscribe.
 :since:  v0.1.00
 		"""
 
-		return self.is_subscribable_for_user(None if (Session == None) else (Session.get_session_user_id(session)))
+		return self.is_subscribable_for_user(None if (Session is None) else (Session.get_session_user_id(session)))
 	#
 
 	def is_subscribable_for_user(self, user_id):
@@ -142,7 +142,7 @@ the handler.
 :since:  v0.1.00
 		"""
 
-		return self.is_subscribed_by_user(None if (Session == None) else (Session.get_session_user_id(session)))
+		return self.is_subscribed_by_user(None if (Session is None) else (Session.get_session_user_id(session)))
 	#
 
 	def is_subscribed_by_user(self, user_id):
@@ -182,7 +182,7 @@ Sets the session user ID to work with.
 :since: v0.1.00
 		"""
 
-		if (Session == None): raise TypeException("Given session instance can not be verified")
+		if (Session is None): raise TypeException("Given session instance can not be verified")
 		self.set_user_id(Session.get_session_user_id(session))
 	#
 
@@ -220,7 +220,7 @@ Subscribes the user identified by the given session.
 :since: v0.1.00
 		"""
 
-		self.subscribe_user(None if (Session == None) else (Session.get_session_user_id(session)))
+		self.subscribe_user(None if (Session is None) else (Session.get_session_user_id(session)))
 	#
 
 	def subscribe_user(self, user_id):
@@ -257,7 +257,7 @@ Unsubscribes the user identified by the given session.
 :since: v0.1.00
 		"""
 
-		self.unsubscribe_user(None if (Session == None) else (Session.get_session_user_id(session)))
+		self.unsubscribe_user(None if (Session is None) else (Session.get_session_user_id(session)))
 	#
 
 	def unsubscribe_user(self, user_id):
