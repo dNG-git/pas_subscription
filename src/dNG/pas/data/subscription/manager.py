@@ -71,7 +71,7 @@ Returns the corresponding subscription handler for a given subscription ID.
 
 		_return = None
 
-		if (type(_id) == str):
+		if (type(_id) is str):
 		#
 			url_elements = urlsplit(_id)
 			handler = "".join([word.capitalize() for word in re.split("\\W", url_elements.scheme)])
