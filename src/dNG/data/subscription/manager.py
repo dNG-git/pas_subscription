@@ -31,39 +31,57 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
-from dNG.pas.data.supports_mixin import SupportsMixin
-from dNG.pas.runtime.not_implemented_exception import NotImplementedException
+import re
 
-class AbstractContentPublisher(SupportsMixin):
+try: from urllib.parse import urlsplit
+except ImportError: from urlparse import urlsplit
+
+from dNG.module.named_loader import NamedLoader
+from dNG.runtime.type_exception import TypeException
+
+from .abstract_handler import AbstractHandler
+
+class Manager(object):
 #
 	"""
-A content publisher accepts plain text content to be pushed to subscribers.
+The subscription "Manager" class should be used to load the corresponding
+subscription handler for a given subscription ID.
 
-:author:     direct Netware Group
+:author:     direct Netware Group et al.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.1.00
+:since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
 	"""
 
-	def deliver_content(self, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
+	@staticmethod
+	def load(_id, required = True):
 	#
 		"""
-Delivers plain text content to subscribers.
+Returns the corresponding subscription handler for a given subscription ID.
 
-:param title: Content title
-:param content: Plain text content
-:param timestamp: UNIX publishing timestamp
-:param author_id: User ID of the content author
-:param owner_id: User ID of the content owner
-:param owner_type: Content owner type
+:param _id: Subscription ID
+:param required: True if exceptions should be thrown if the handler is not
+                 defined.
 
-:since: v0.1.00
+:return: (object) Subscription handler
+:since:  v0.2.00
 		"""
 
-		raise NotImplementedException()
+		_return = None
+
+		if (type(_id) is str):
+		#
+			url_elements = urlsplit(_id)
+			handler = "".join([word.capitalize() for word in re.split("\\W", url_elements.scheme)])
+
+			_return = NamedLoader.get_instance("dNG.data.subscription.{0}Handler".format(handler), required, _id = _id)
+			if (required and (not isinstance(_return, AbstractHandler))): raise TypeException("Requested handler is not supported")
+		#
+
+		return _return
 	#
 #
 

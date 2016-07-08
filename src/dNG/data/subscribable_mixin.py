@@ -31,54 +31,33 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
-from dNG.pas.runtime.not_implemented_exception import NotImplementedException
-from .abstract_content_publisher import AbstractContentPublisher
+from dNG.data.subscription.manager import Manager
 
-class AbstractStructuredContentPublisher(AbstractContentPublisher):
+class SubscribableMixin(object):
 #
 	"""
-A content publisher accepts plain text content to be pushed to subscribers.
+The "SubscribableMixin" provides access to the subscription handler behind
+an database entry with "id_subscription" attribute.
 
-:author:     direct Netware Group
+:author:     direct Netware Group et al.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.1.00
+:since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
 	"""
 
-	def __init__(self):
+	def get_subscription_handler(self):
 	#
 		"""
-Constructor __init__(AbstractStructuredContentPublisher)
+Returns the subscription handler if set.
 
-:since: v0.1.00
+:return: (object) Subscription handler based on "id_subscription" attribute
+:since:  v0.2.00
 		"""
 
-		AbstractContentPublisher.__init__(self)
-
-		self.supported_features['structured_content'] = True
-	#
-
-	def deliver_structured_content(self, parent_id, _id, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
-	#
-		"""
-Delivers plain text but structured content to subscribers.
-
-:param parent_id: Parent content ID
-:param _id: ID of the newly created content
-:param title: Content title
-:param content: Plain text content
-:param timestamp: UNIX publishing timestamp
-:param author_id: User ID of the content author
-:param owner_id: User ID of the content owner
-:param owner_type: Content owner type
-
-:since: v0.1.00
-		"""
-
-		raise NotImplementedException()
+		with self: return Manager.load(self.local.db_instance.id_subscription, False)
 	#
 #
 

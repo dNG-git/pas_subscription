@@ -31,33 +31,39 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
-from dNG.pas.data.subscription.manager import Manager
+from dNG.data.supports_mixin import SupportsMixin
+from dNG.runtime.not_implemented_exception import NotImplementedException
 
-class SubscribableMixin(object):
+class AbstractContentPublisher(SupportsMixin):
 #
 	"""
-The "SubscribableMixin" provides access to the subscription handler behind
-an database entry with "id_subscription" attribute.
+A content publisher accepts plain text content to be pushed to subscribers.
 
-:author:     direct Netware Group
+:author:     direct Netware Group et al.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.1.00
+:since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
 	"""
 
-	def get_subscription_handler(self):
+	def deliver_content(self, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
 	#
 		"""
-Returns the subscription handler if set.
+Delivers plain text content to subscribers.
 
-:return: (object) Subscription handler based on "id_subscription" attribute
-:since:  v0.1.00
+:param title: Content title
+:param content: Plain text content
+:param timestamp: UNIX publishing timestamp
+:param author_id: User ID of the content author
+:param owner_id: User ID of the content owner
+:param owner_type: Content owner type
+
+:since: v0.2.00
 		"""
 
-		with self: return Manager.load(self.local.db_instance.id_subscription, False)
+		raise NotImplementedException()
 	#
 #
 
