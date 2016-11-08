@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -42,8 +41,7 @@ from dNG.runtime.type_exception import TypeException
 from .abstract_handler import AbstractHandler
 
 class Manager(object):
-#
-	"""
+    """
 The subscription "Manager" class should be used to load the corresponding
 subscription handler for a given subscription ID.
 
@@ -54,12 +52,11 @@ subscription handler for a given subscription ID.
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	@staticmethod
-	def load(_id, required = True):
-	#
-		"""
+    @staticmethod
+    def load(_id, required = True):
+        """
 Returns the corresponding subscription handler for a given subscription ID.
 
 :param _id: Subscription ID
@@ -68,21 +65,18 @@ Returns the corresponding subscription handler for a given subscription ID.
 
 :return: (object) Subscription handler
 :since:  v0.2.00
-		"""
+        """
 
-		_return = None
+        _return = None
 
-		if (type(_id) is str):
-		#
-			url_elements = urlsplit(_id)
-			handler = "".join([word.capitalize() for word in re.split("\\W", url_elements.scheme)])
+        if (type(_id) is str):
+            url_elements = urlsplit(_id)
+            handler = "".join([word.capitalize() for word in re.split("\\W", url_elements.scheme)])
 
-			_return = NamedLoader.get_instance("dNG.data.subscription.{0}Handler".format(handler), required, _id = _id)
-			if (required and (not isinstance(_return, AbstractHandler))): raise TypeException("Requested handler is not supported")
-		#
+            _return = NamedLoader.get_instance("dNG.data.subscription.{0}Handler".format(handler), required, _id = _id)
+            if (required and (not isinstance(_return, AbstractHandler))): raise TypeException("Requested handler is not supported")
+        #
 
-		return _return
-	#
+        return _return
+    #
 #
-
-##j## EOF

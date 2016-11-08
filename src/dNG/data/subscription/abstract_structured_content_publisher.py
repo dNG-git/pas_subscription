@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -36,8 +35,7 @@ from dNG.runtime.not_implemented_exception import NotImplementedException
 from .abstract_content_publisher import AbstractContentPublisher
 
 class AbstractStructuredContentPublisher(AbstractContentPublisher):
-#
-	"""
+    """
 A content publisher accepts plain text content to be pushed to subscribers.
 
 :author:     direct Netware Group et al.
@@ -47,24 +45,22 @@ A content publisher accepts plain text content to be pushed to subscribers.
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	def __init__(self):
-	#
-		"""
+    def __init__(self):
+        """
 Constructor __init__(AbstractStructuredContentPublisher)
 
 :since: v0.2.00
-		"""
+        """
 
-		AbstractContentPublisher.__init__(self)
+        AbstractContentPublisher.__init__(self)
 
-		self.supported_features['structured_content'] = True
-	#
+        self.supported_features['structured_content'] = True
+    #
 
-	def deliver_structured_content(self, parent_id, _id, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
-	#
-		"""
+    def deliver_structured_content(self, parent_id, _id, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
+        """
 Delivers plain text but structured content to subscribers.
 
 :param parent_id: Parent content ID
@@ -77,10 +73,8 @@ Delivers plain text but structured content to subscribers.
 :param owner_type: Content owner type
 
 :since: v0.2.00
-		"""
+        """
 
-		raise NotImplementedException()
-	#
+        raise NotImplementedException()
+    #
 #
-
-##j## EOF

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -34,8 +33,7 @@ https://www.direct-netware.de/redirect?licenses;gpl
 from dNG.data.subscription.manager import Manager
 
 class SubscribableMixin(object):
-#
-	"""
+    """
 The "SubscribableMixin" provides access to the subscription handler behind
 an database entry with "id_subscription" attribute.
 
@@ -46,19 +44,16 @@ an database entry with "id_subscription" attribute.
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	def get_subscription_handler(self):
-	#
-		"""
+    def get_subscription_handler(self):
+        """
 Returns the subscription handler if set.
 
 :return: (object) Subscription handler based on "id_subscription" attribute
 :since:  v0.2.00
-		"""
+        """
 
-		with self: return Manager.load(self.local.db_instance.id_subscription, False)
-	#
+        with self: return Manager.load(self.local.db_instance.id_subscription, False)
+    #
 #
-
-##j## EOF

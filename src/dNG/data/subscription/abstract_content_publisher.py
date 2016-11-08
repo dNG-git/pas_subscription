@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-##j## BOF
 
 """
 direct PAS
@@ -35,8 +34,7 @@ from dNG.data.supports_mixin import SupportsMixin
 from dNG.runtime.not_implemented_exception import NotImplementedException
 
 class AbstractContentPublisher(SupportsMixin):
-#
-	"""
+    """
 A content publisher accepts plain text content to be pushed to subscribers.
 
 :author:     direct Netware Group et al.
@@ -46,11 +44,10 @@ A content publisher accepts plain text content to be pushed to subscribers.
 :since:      v0.2.00
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
-	"""
+    """
 
-	def deliver_content(self, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
-	#
-		"""
+    def deliver_content(self, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
+        """
 Delivers plain text content to subscribers.
 
 :param title: Content title
@@ -61,10 +58,8 @@ Delivers plain text content to subscribers.
 :param owner_type: Content owner type
 
 :since: v0.2.00
-		"""
+        """
 
-		raise NotImplementedException()
-	#
+        raise NotImplementedException()
+    #
 #
-
-##j## EOF
