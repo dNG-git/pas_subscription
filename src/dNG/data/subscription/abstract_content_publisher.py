@@ -30,6 +30,8 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
+# pylint: disable=import-error, no-name-in-module
+
 from dNG.data.supports_mixin import SupportsMixin
 from dNG.runtime.not_implemented_exception import NotImplementedException
 
@@ -45,6 +47,8 @@ A content publisher accepts plain text content to be pushed to subscribers.
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
     """
+
+    # pylint: disable=unused-argument
 
     def deliver_content(self, title, content, timestamp = None, author_id = None, owner_id = None, owner_type = None):
         """

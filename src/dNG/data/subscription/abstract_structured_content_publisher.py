@@ -30,6 +30,8 @@ https://www.direct-netware.de/redirect?licenses;gpl
 #echo(__FILEPATH__)#
 """
 
+# pylint: disable=import-error, no-name-in-module
+
 from dNG.runtime.not_implemented_exception import NotImplementedException
 
 from .abstract_content_publisher import AbstractContentPublisher
@@ -47,12 +49,16 @@ A content publisher accepts plain text content to be pushed to subscribers.
              GNU General Public License 2
     """
 
+    # pylint: disable=unused-argument
+
     def __init__(self):
         """
 Constructor __init__(AbstractStructuredContentPublisher)
 
 :since: v0.2.00
         """
+
+        # pylint: disable=no-member, non-parent-init-called
 
         AbstractContentPublisher.__init__(self)
 
