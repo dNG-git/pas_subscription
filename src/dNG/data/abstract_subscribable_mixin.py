@@ -31,29 +31,44 @@ https://www.direct-netware.de/redirect?licenses;gpl
 """
 
 from dNG.data.subscription.manager import Manager
+from dNG.runtime.not_implemented_exception import NotImplementedException
 
-class SubscribableMixin(object):
+class AbstractSubscribableMixin(object):
     """
-The "SubscribableMixin" provides access to the subscription handler behind
-an database entry with "id_subscription" attribute.
+The "AbstractSubscribableMixin" provides an abstract interface to access a
+subscription mechanism implemented on handler instances.
 
 :author:     direct Netware Group et al.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.2.00
+:since:      v1.0.0
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
     """
 
-    def get_subscription_handler(self):
+    @property
+    def subscription_handler(self):
         """
 Returns the subscription handler if set.
 
-:return: (object) Subscription handler based on "id_subscription" attribute
-:since:  v0.2.00
+:return: (object) Subscription handler instance
+:since:  v1.0.0
         """
 
-        with self: return Manager.load(self.local.db_instance.id_subscription, False)
+        return Manager.load(self.subscription_handler_class_name, False)
+    #
+
+    @property
+    def subscription_handler_class_name(self):
+        """
+Returns the subscription handler class name used for this subscribable
+instance.
+
+:return: (str) Subscription handler class name
+:since:  v1.0.0
+        """
+
+        raise NotImplementedException()
     #
 #
