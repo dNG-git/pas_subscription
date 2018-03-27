@@ -37,7 +37,7 @@ import re
 try: from urllib.parse import urlsplit
 except ImportError: from urlparse import urlsplit
 
-from dNG.module.named_loader import NamedLoader
+from dNG.runtime.named_loader import NamedLoader
 from dNG.runtime.type_exception import TypeException
 
 from .abstract_handler import AbstractHandler
@@ -51,7 +51,7 @@ subscription handler for a given subscription ID.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.2.00
+:since:      v1.0.0
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
     """
@@ -66,14 +66,14 @@ Returns the corresponding subscription handler for a given subscription ID.
                  defined.
 
 :return: (object) Subscription handler
-:since:  v0.2.00
+:since:  v1.0.0
         """
 
         _return = None
 
         if (type(_id) is str):
             url_elements = urlsplit(_id)
-            handler = "".join([word.capitalize() for word in re.split("\\W", url_elements.scheme)])
+            handler = NamedLoader.get_camel_case_class_name(url_elements.scheme)
 
             _return = NamedLoader.get_instance("dNG.data.subscription.{0}Handler".format(handler), required, _id = _id)
             if (required and (not isinstance(_return, AbstractHandler))): raise TypeException("Requested handler is not supported")

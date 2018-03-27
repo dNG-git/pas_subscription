@@ -44,7 +44,7 @@ A content publisher accepts plain text content to be pushed to subscribers.
 :copyright:  direct Netware Group - All rights reserved
 :package:    pas
 :subpackage: subscription
-:since:      v0.2.00
+:since:      v1.0.0
 :license:    https://www.direct-netware.de/redirect?licenses;gpl
              GNU General Public License 2
     """
@@ -55,7 +55,7 @@ A content publisher accepts plain text content to be pushed to subscribers.
         """
 Constructor __init__(AbstractStructuredContentPublisher)
 
-:since: v0.2.00
+:since: v1.0.0
         """
 
         # pylint: disable=no-member, non-parent-init-called
@@ -78,7 +78,7 @@ Delivers plain text but structured content to subscribers.
 :param owner_id: User ID of the content owner
 :param owner_type: Content owner type
 
-:since: v0.2.00
+:since: v1.0.0
         """
 
         raise NotImplementedException()
